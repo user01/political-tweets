@@ -1,0 +1,25 @@
+{
+  "name": "political-tweets",
+  "version": "0.1.0",
+  "description": "Simple tool to collect tweets from a set of accounts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/user01/political-tweets.git"
+  },
+  "author": "Erik Langenborg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/user01/political-tweets/issues"
+  },
+  "homepage": "https://github.com/user01/political-tweets#readme",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "dotenv": "^2.0.0",
+    "moment": "^2.16.0",
+    "twitter": "^1.7.0"
+  }
+}
