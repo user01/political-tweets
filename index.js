@@ -31,6 +31,17 @@ pool
   .query('CREATE TABLE IF NOT EXISTS tweets ( id serial primary key, tweet json )')
   .then(() => lookupUsers(twitterHandles));
 
+const tweet_fix = (tweet) => {
+  const s = JSON.stringify(tweet).replace('\\u0000', ''); // Fix bad unicode
+  try {
+    return JSON.parse(s);
+  } catch (e) {
+    console.log('Unable to parse: ', tweet);
+    console.error(e);
+  }
+  return false;
+}
+
 const lookupUsers = (handles) => {
   client.post('users/lookup', {
     screen_name: handles.join(','),
@@ -55,7 +66,10 @@ const followIds = (ids) => {
     track: ''
   }, (stream) => {
     stream.on('data', (event) => {
-      const tweet = event;
+      const tweet = tweet_fix(event);
+      if (!tweet) {
+        return;
+      }
       console.log(chalk.blue('________________________________________________________________________________'));
       console.log(` ${chalk.cyan('>>')} ${tweet.user.name} ${tweet.id_str}`);
       console.log(`    ${tweet.text}`);
