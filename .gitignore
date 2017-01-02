@@ -38,3 +38,6 @@ jspm_packages
 
 # enviromental variables
 .env
+
+# placeholder directory for db backup files
+db_backups
